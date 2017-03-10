@@ -23,11 +23,23 @@ describe('Dungeon', function () {
 
   describe('login()', function () {
     it('should be fullfilled', function () {
-      this.sinon.stub(Server, 'connect')
-        .returns(Promise.resolve({ hp: 1000, item: {}, gold: 0 }))
+      this.sinon.stub(Server, 'connect').returns({ hp: 1000, item: {}, gold: 0 })
       return expect(Dungeon.login())
         .to.eventually.be.fulfilled
-        .and.that.equal({ hp: 1000, item: {}, gold: 0 })
+        .and.that.eqls({ hp: 1000, item: {}, gold: 0 })
+    })
+    it('should be fullfilled', function () {
+      this.sinon.stub(Server, 'connect').throws(new Error('Server Down'))
+
+      return expect(Dungeon.login())
+        .to.eventually.be.fulfilled
+        .and.that.eqls({ hp: 1000, item: {}, gold: 0 })
+    })
+  })
+  describe('playDungeon1()', function () {
+    it('should be fullfilled', function () {
+      return expect(Dungeon.playDungeon1({ hp: 1000, item: {}, gold: 0 }))
+        .to.be.eqls({ hp: 800, item: { chestbox: 1 }, gold: 2 })
     })
   })
 })
