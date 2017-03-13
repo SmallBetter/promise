@@ -21,12 +21,21 @@ describe('Game', function () {
     sandbox.restore()
   })
 
-  describe('login()', function () {
-    it('should be fullfilled', function () {
-      this.sinon.stub(Dungeon, 'login').returns({ hp: 1000, item: {}, gold: 0 })
+  describe('play()', function () {
+    it('should  game tobe fullfilled', function () {
+      this.sinon.stub(Dungeon, 'login')
+      this.sinon.stub(Dungeon, 'playDungeon1')
+      this.sinon.stub(Dungeon, 'playDungeon2')
+      this.sinon.stub(Dungeon, 'playDungeon3')
+      this.sinon.stub(Dungeon, 'logout')
       return expect(Game.play())
         .to.eventually.be.fulfilled
-        .and.that.eqls({ hp: 1000, item: {}, gold: 0 })
+    })
+
+    it('should be reject Error', function () {
+      this.sinon.stub(Dungeon, 'login').throws(new Error('Server Down'))
+      return expect(Game.play())
+        .to.eventually.be.rejectedWith('Server')
     })
   })
 })

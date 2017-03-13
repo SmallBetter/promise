@@ -8,5 +8,11 @@ export default class play {
     return Promise
       .try(() => Dungeon.login())
       .then(() => Dungeon.playDungeon1())
+      .then(() => Dungeon.playDungeon2())
+      .then(() => Dungeon.playDungeon3())
+      .then(() => Dungeon.logout())
+      .catch(error => {
+        throw error
+      })
   }
 }

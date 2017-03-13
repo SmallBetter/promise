@@ -4,7 +4,6 @@ import { describe, it, beforeEach, afterEach } from 'mocha'
 import { expect } from 'chai'
 import sinon from 'sinon'
 import Server from '../src/Server'
-import Dungeon from '../src/Dungeon'
 
 describe('Server', function () {
   let sandbox
@@ -18,16 +17,15 @@ describe('Server', function () {
     sandbox.restore()
   })
   describe('connect()', function () {
-    it('should attackAndCount tobe hero 0', function () {
-      return expect(function () {
-        Server.connect(false)
-      })
-        .to.be.throw(/server/)
-    })
-
-    it('should attackAndCount tobe hero 0', function () {
+    it('should be ture', function () {
       return expect(Server.connect(true))
-        .to.be.eqls({ hp: 1000, item: {}, gold: 0 })
+        .to.be.eqls(true)
+    })
+  })
+  describe('disconnect()', function () {
+    it('should be ture', function () {
+      return expect(Server.disconnect(true))
+        .to.be.eqls(true)
     })
   })
 })
