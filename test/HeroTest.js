@@ -59,7 +59,7 @@ describe('Dungeon', function () {
         .to.be.eqls({ sword: 1 })
     })
 
-    it('should be all new item', function () {
+    it('should be add new item', function () {
       const heroItem = {}
       const rewordItem = { sword: 1 }
       return expect(Hero.itemReword(heroItem, rewordItem))
